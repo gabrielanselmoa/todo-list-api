@@ -15,14 +15,22 @@ type TaskType = {
 export const createTask = async (req: Request, res: Response) => {
 
     try {
+
         if(req.body.title){
 
             const {title, description, status} = req.body as TaskType
             let task = await prisma.task.findFirst({where:{title}})
+            
+            const userId = req.user?.id
     
             if(!task){
                 let newTask = await prisma.task.create({
-                    data:{title, description, status}
+                    data:{title, description, status},
+                    userTasks: {
+                        create: {
+                            userId: userId,
+                        },
+                    },
                 })
                 res.status(201).json({Message: "Task created successfully!", id: newTask.id})
             }else{
