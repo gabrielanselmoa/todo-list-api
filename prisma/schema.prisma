@@ -1,0 +1,50 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// prisma/schema.prisma
+
+// Define the User model
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   
+  password String
+  tasks    UserTask[]
+}
+
+// Define the Task model
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  status      Boolean   @default(false)
+  userTasks   UserTask[]
+  subtasks    Subtask[]
+}
+
+// Intermediate model for the many-to-many relationship between User and Task
+model UserTask {
+  userId   Int
+  taskId   Int
+  user     User     @relation(fields: [userId], references: [id])
+  task     Task     @relation(fields: [taskId], references: [id])
+
+  @@id([userId, taskId])
+}
+
+// Model to represent the Subtasks
+model Subtask {
+  id         Int      @id @default(autoincrement())
+  title      String
+  description String?
+  status     Boolean
+  taskId     Int
+  task       Task     @relation(fields: [taskId], references: [id])
+}
