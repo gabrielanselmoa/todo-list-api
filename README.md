@@ -15,11 +15,33 @@ bun dev
 ```
 
 ### Project Description
- - Technical Test for Full Stack Developer Intern by Sigma Software;
- - Back-End API + Front-End API Consuming;
+ - Technical Test for Back-End Developer;
+ - Back-End API;
 
 ### Technologies Used
- - Node.js (Express), Typescript, PostgreSQL, Prisma;
+ - Node.js (Express), Typescript, PostgreSQL, Prisma, Swagger;
+
+### Documentation - Swagger
+ - URL: http://localhost:4000/api-docs/
+
+------------------------------------------------------
+
+### Routes - TASKS:
+
+ ## /task/all
+    - description: GET all tasks
+
+ ## /task/:id
+    - description: GET task by ID
+    
+ ## /task/update/:id
+    - description: PUT task by ID
+
+ ## /task/new
+    - description: POST new task
+
+ ## /task/delete/:id
+    - description: DELETE task by ID
 
 ------------------------------------------------------
 
@@ -28,27 +50,11 @@ bun dev
  ## /user/all
     - description: GET all users
 
- ## /user/info/view/:id
-    - description: GET users by ID
-    
- ## /user/info/edit/:id
-    - description: PUT users by ID
+ ## /user/register
+    - description: POST new user
 
- ## /user/new
-    - description: POST users
-
- ## /user/drop/:id
-    - description: DELETE users by ID
-
-------------------------------------------------------
-
-### Routes - PERMISSIONS:
-
- ## /permission/all
-    - description: GET all permissions
-
- ## /permission/new
-    - description: POST permissions
+ ## /user/login
+    - description: POST user
 
 ------------------------------------------------------
 
